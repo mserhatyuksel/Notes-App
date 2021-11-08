@@ -17,6 +17,10 @@
   border-radius: 50px;
 }
 
+.search:focus{
+  outline: 0;
+}
+
 .search::placeholder {
   color: #868686;
 }
