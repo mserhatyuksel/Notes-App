@@ -1,6 +1,19 @@
+import { useState } from "react";
 import styles from "./Textarea.module.css";
-const TextArea = () => {
-  const handleChecked = (e) => console.log(e.target.id);
+const TextArea = ({ addNote }) => {
+  const [selectedColor, setSelectedColor] = useState("pink");
+  const [text, setText] = useState("");
+  const handleChecked = (e) => {
+    setSelectedColor(e.target.id);
+  };
+  const handleSubmit = () => {
+    addNote({
+      id: Math.random(),
+      text,
+      color: selectedColor,
+    });
+    setText("");
+  };
   return (
     <div className={styles.inputWrapper}>
       <textarea
@@ -9,6 +22,14 @@ const TextArea = () => {
         cols="100"
         rows="7"
         placeholder="Enter your note here..."
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            handleSubmit();
+          }
+        }}
       />
       <div className={styles.colors} onChange={handleChecked}>
         <label className={styles.container}>
@@ -31,7 +52,9 @@ const TextArea = () => {
           <input type="radio" name="color" id="green" />
           <span className={`${styles.checkmark} ${styles.green}`} />
         </label>
-        <button className={styles.add_btn}>ADD</button>
+        <button className={styles.add_btn} onClick={handleSubmit}>
+          ADD
+        </button>
       </div>
     </div>
   );
