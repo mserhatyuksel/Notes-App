@@ -1,5 +1,10 @@
+import { useSelector, useDispatch } from "react-redux";
+import { selectFilteredNotes, removeNote } from "../../redux/notes/notesSlice";
 import styles from "./NotesList.module.css";
-const NotesList = ({ notes }) => {
+const NotesList = () => {
+  const dispatch = useDispatch();
+  const notes = useSelector(selectFilteredNotes);
+
   return (
     <div className={styles["grid-container"]}>
       {notes.map((note) => {
@@ -10,7 +15,8 @@ const NotesList = ({ notes }) => {
               styles["grid-item"]
             }`}
           >
-            {note.text}
+            <p>{note.text}</p>
+            <button onClick={() => dispatch(removeNote(note.id))}>X</button>
           </div>
         );
       })}

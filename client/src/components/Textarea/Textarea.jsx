@@ -1,17 +1,25 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addNote } from "../../redux/notes/notesSlice";
 import styles from "./Textarea.module.css";
-const TextArea = ({ addNote }) => {
+const TextArea = () => {
+  const dispatch = useDispatch();
+
   const [selectedColor, setSelectedColor] = useState("pink");
   const [text, setText] = useState("");
+
   const handleChecked = (e) => {
     setSelectedColor(e.target.id);
   };
+  
   const handleSubmit = () => {
-    addNote({
-      id: Math.random(),
-      text,
-      color: selectedColor,
-    });
+    dispatch(
+      addNote({
+        id: Math.random(),
+        text,
+        color: selectedColor,
+      })
+    );
     setText("");
   };
   return (

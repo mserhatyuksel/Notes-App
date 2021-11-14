@@ -1,5 +1,8 @@
+import { useDispatch } from "react-redux";
+import { changeFilter } from "../../redux/notes/notesSlice";
 import styles from "./Header.module.css";
-const Header = ({ changeFilter }) => {
+const Header = () => {
+  const dispatch = useDispatch();
 
   return (
     <header className={styles.header}>
@@ -8,7 +11,7 @@ const Header = ({ changeFilter }) => {
         className={styles.search}
         type="text"
         placeholder="Search..."
-        onChange={(e) => changeFilter(e.target.value)}
+        onChange={(e) => dispatch(changeFilter(e.target.value))}
       />
     </header>
   );

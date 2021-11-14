@@ -27,6 +27,20 @@
   grid-row-gap: 10px;
 }
 .grid-item{
-  padding: 10px 20px 10px 15px;
+  padding: 10px 24px 10px 15px;
   border-radius: 10px;
+  position: relative;
+}
+.grid-item button{
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 8px;
+  margin-top: 4px;
+  border: none;
+  border-radius: 5px;
+  background: transparent;
+  font-weight: bolder;
+  font-size: medium;
+  color: lightgray;
 }
