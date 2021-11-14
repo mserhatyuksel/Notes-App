@@ -8,11 +8,15 @@ function App() {
   const [notes, setNotes] = useState([
     { id: "1", text: "test1", color: "blue" },
   ]);
+
   const [filteredNotes, setFilteredNotes] = useState([]);
   const [filter, setFilter] = useState("");
+
   useEffect(() => {
     if (filter !== "") {
-      const filtered = notes.filter((item) => item.text.includes(filter));
+      const filtered = notes.filter((item) =>
+        item.text.toLowerCase().includes(filter)
+      );
       setFilteredNotes(filtered);
     } else {
       setFilteredNotes(notes);
@@ -24,7 +28,7 @@ function App() {
   };
 
   const changeFilter = (text) => {
-    setFilter(text);
+    setFilter(text.toLowerCase());
   };
   return (
     <div className="container">
