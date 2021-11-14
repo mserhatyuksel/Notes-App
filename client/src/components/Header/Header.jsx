@@ -1,7 +1,5 @@
-import { useState } from "react";
 import styles from "./Header.module.css";
 const Header = ({ changeFilter }) => {
-  const [input, setInput] = useState("");
 
   return (
     <header className={styles.header}>
